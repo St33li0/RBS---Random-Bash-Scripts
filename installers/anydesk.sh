@@ -3,6 +3,11 @@
 # AnyDesk installation script
 # Downloads the latest .deb package and installs it
 
+if [[ $EUID -ne 0 ]]; then
+    echo "Re-executing with sudo to gain root privileges..."
+    exec sudo bash "$0" "$@"
+fi
+
 ANYDESK_URL="https://download.anydesk.com/linux/anydesk_7.1.4-1_amd64.deb"
 ANYDESK_DEB="anydesk.deb"
 
