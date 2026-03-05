@@ -16,9 +16,11 @@ wget "$ANYDESK_URL" -O "$ANYDESK_DEB"
 
 if [ $? -eq 0 ]; then
     echo "Installing AnyDesk..."
-    sudo dpkg -i "$ANYDESK_DEB"
+    dpkg -i "$ANYDESK_DEB"
     echo "Installation complete."
     rm "$ANYDESK_DEB"
+    echo "Resolving dependencies..."
+    apt-get install --fix-broken -y
 else
     echo "Failed to download AnyDesk."
     exit 1
