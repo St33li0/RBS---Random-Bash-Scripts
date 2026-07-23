@@ -65,9 +65,6 @@ while true; do
   if ! pgrep -f "RSF_Launcher.exe" > /dev/null && [ "$SECONDS" -gt 10 ]; then
     echo "Game closed. Exiting script."
     "$oversteer_path" --device "$device_path" --range 900
-	if ; then
-      exit 0
-	fi
   fi
 
   # Get last occurrence of "-r <number>"
