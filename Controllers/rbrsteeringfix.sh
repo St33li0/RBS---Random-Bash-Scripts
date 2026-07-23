@@ -48,9 +48,11 @@ trap "echo 'Stopped.'; exit 0" SIGINT
 pgrep -f rbrsteeringfix.sh > /dev/null && exit 0
 
 oversteer_path=$(whereis -b "oversteer" | sed 's/^oversteer: //')
-device_path=$(oversteer --list |grep "$device_identifier_string" | sed -n 's/^  \(\/dev[^:]*\):.*/\1/p')
+device_path=$(oversteer --list |grep -i "$device_identifier_string" | sed -n 's/^  \(\/dev[^:]*\):.*/\1/p')
 
 last_number=""
+
+SECONDS=0
 
 # Main loop
 while true; do
@@ -63,7 +65,9 @@ while true; do
   if ! pgrep -f "RSF_Launcher.exe" > /dev/null; then
     echo "Game closed. Exiting script."
     "$oversteer_path" --device "$device_path" --range 900
-    exit 0
+	if [ "$SETTINGS" -gt 10 ]; then
+      exit 0
+	fi
   fi
 
   # Get last occurrence of "-r <number>"
