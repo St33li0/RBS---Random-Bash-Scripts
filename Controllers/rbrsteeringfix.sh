@@ -62,10 +62,10 @@ while true; do
 	  exit 1
 	fi
   # Exit if game is no longer running
-  if ! pgrep -f "RSF_Launcher.exe" > /dev/null; then
+  if ! pgrep -f "RSF_Launcher.exe" > /dev/null && [ "$SECONDS" -gt 10 ]; then
     echo "Game closed. Exiting script."
     "$oversteer_path" --device "$device_path" --range 900
-	if [ "$SETTINGS" -gt 10 ]; then
+	if ; then
       exit 0
 	fi
   fi
