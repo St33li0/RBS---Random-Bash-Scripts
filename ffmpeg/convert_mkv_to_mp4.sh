@@ -1,0 +1,10 @@
+#!/bin/bash
+IN_FILE="$1"
+OUT_EXT=".mp4"
+OUT_FILE="$2"
+MAP="$3"
+PRESET="$4"
+VIDEO_CODEC="$5"
+AUDIO_CODEC="$6"
+AUDIO_BITRATE="$7"
+ffmpeg -i "$IN_FILE" -map 0 -preset veryfast -c:v libx264 -crf 18 -c:a aac -b:a 192k "${IN_FILE}${OUT_FILE}"
